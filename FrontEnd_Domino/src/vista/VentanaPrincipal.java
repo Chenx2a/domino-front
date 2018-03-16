@@ -5,6 +5,8 @@
  */
 package vista;
 
+import control.control;
+import control.controlDomino;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -16,11 +18,13 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import model.model;
 
 /**
  *
@@ -35,18 +39,23 @@ public class VentanaPrincipal extends JFrame{
     private JButton botonComer2;
     private JPanel panelJugador1;
     private JPanel panelJugador2;
+    private JButton btnFicha0;
+    private controlDomino control;
+    private model modelo;
     
     
     
     
-    public VentanaPrincipal() {
+    public VentanaPrincipal(controlDomino nuevoGestor) {
         super("Domino");
         ajustarConfiguracionInicial();
         agregarComponentes(this.getContentPane());
+        control = nuevoGestor;
     }
     
-    public void iniciar() {
+    public void iniciar() throws Exception {
         this.setVisible(true);
+        control.repartir();
     }
 
     private void ajustarConfiguracionInicial() {
@@ -57,7 +66,7 @@ public class VentanaPrincipal extends JFrame{
     }
     
     private void ventanaJugar() {
-        JDialog panelJugar = new JDialog(); //Ventana Emergente
+        JDialog panelJugar = new JDialog();
         panelJugar.setTitle("Bienvenido a la mesa \"UNA\"");
         panelJugar.setSize(700, 550);
         panelJugar.setLocationRelativeTo(null);
@@ -73,11 +82,8 @@ public class VentanaPrincipal extends JFrame{
         JPanel panelCartas = new JPanel();
         panelCartas.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelCartas.setBorder(BorderFactory.createTitledBorder("Pozo"));
-        panelCartas.add(new JButton("Ficha1"));
-        panelCartas.add(new JButton("Ficha2"));
-        panelCartas.add(new JButton("Ficha3"));
-        panelCartas.add(new JButton("Ficha4"));
-        panelCartas.add(new JButton("Ficha5"));
+        btnFicha0 = new JButton(new ImageIcon(this.getClass().getResource("../imagenes/0-0.jpg")));
+        panelCartas.add(btnFicha0);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -114,7 +120,7 @@ public class VentanaPrincipal extends JFrame{
         botonComer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                panelJugador1.add(new JButton("Ficha"));
+                panelJugador1.add(new JButton(new ImageIcon(this.getClass().getResource("../imagenes/0-0.jpg"))));
                 panelJugador1.revalidate();
                 validate();
             }
@@ -124,7 +130,7 @@ public class VentanaPrincipal extends JFrame{
         botonComer2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            panelJugador2.add(new JButton("Ficha"));
+            panelJugador2.add(new JButton(new ImageIcon(this.getClass().getResource("../imagenes/0-0.jpg"))));
             panelJugador2.revalidate();
             validate();
             }
@@ -135,7 +141,7 @@ public class VentanaPrincipal extends JFrame{
         gbc.weightx = 0.75;
         gbc.insets = margen;
 
-        
+
         panelJugar.add(panelOpciones, gbc);
 
     }

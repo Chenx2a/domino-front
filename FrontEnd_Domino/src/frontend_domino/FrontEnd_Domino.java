@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package frontend_domino;
+import control.controlDomino;
 import vista.VentanaPrincipal;
 
 /**
@@ -15,7 +16,7 @@ public class FrontEnd_Domino {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         VentanaPrincipal ventana = new VentanaPrincipal();
         ventana.iniciar();
     }
