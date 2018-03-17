@@ -16,9 +16,9 @@ import oracle.jdbc.OracleTypes;
 public class ServicioFicha extends Servicio
 {
 
-    private static final String LISTARFICHA = "{call listarFicha ()}";
+    private static final String LISTARFICHA = "{?=call listarFicha()}";
     private static final String CONSULTARFICHAUBICACION = "{?=call consultarFichaUbicacion(?)}";
-    private static final String ACTUALIZARFICHA = "{call actualizarFicha(?,?,?,?,?)}";
+    private static final String ACTUALIZARFICHA = "{call actualizarFicha(?,?,?,?)}";
 
     /** Creates a new instance of ServicioLibro */
     public ServicioFicha()

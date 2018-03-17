@@ -38,10 +38,6 @@ public class Ficha {
     public void setValor2(int valor2) {
         this.valor2 = valor2;
     }
-    
-    public int getValorTotal(){
-        return this.valor1 + this.valor2;
-    }
 
     public String getImagen() {
         return imagen;
@@ -65,5 +61,13 @@ public class Ficha {
 
     public void setUbicacion(int ubicacion) {
         this.ubicacion = ubicacion;
+    }
+    
+    public int getValorTotal(){
+        return this.valor1 + this.valor2;
+    }
+    
+    public int isDoble(){
+        return this.valor1 = this.valor2;
     }
 }

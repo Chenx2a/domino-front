@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Jugador {
     private int numero;
-    private int  puntuacion;
+    private int puntuacion;
     private ArrayList <Ficha> fichas;
 
     public Jugador() {
