@@ -10,6 +10,7 @@ import control.controlDomino;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -39,23 +40,30 @@ public class VentanaPrincipal extends JFrame{
     private JButton botonComer2;
     private JPanel panelJugador1;
     private JPanel panelJugador2;
-    private JButton btnFicha0;
     private controlDomino control;
     private model modelo;
     
     
     
     
-    public VentanaPrincipal(controlDomino nuevoGestor) {
+    public VentanaPrincipal() {
         super("Domino");
         ajustarConfiguracionInicial();
         agregarComponentes(this.getContentPane());
-        control = nuevoGestor;
     }
     
+
     public void iniciar() throws Exception {
         this.setVisible(true);
+    }
+    
+    public void setControlDomino(controlDomino nuevoGestor) throws Exception{
+        this.control = nuevoGestor;
         control.repartir();
+    }
+    
+    public void setModel(model model){
+        this.modelo = model;
     }
 
     private void ajustarConfiguracionInicial() {
@@ -68,7 +76,7 @@ public class VentanaPrincipal extends JFrame{
     private void ventanaJugar() {
         JDialog panelJugar = new JDialog();
         panelJugar.setTitle("Bienvenido a la mesa \"UNA\"");
-        panelJugar.setSize(700, 550);
+        panelJugar.setSize(900, 550);
         panelJugar.setLocationRelativeTo(null);
         panelJugar.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
         panelJugar.setVisible(true);
@@ -82,13 +90,16 @@ public class VentanaPrincipal extends JFrame{
         JPanel panelCartas = new JPanel();
         panelCartas.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelCartas.setBorder(BorderFactory.createTitledBorder("Pozo"));
-        btnFicha0 = new JButton(new ImageIcon(this.getClass().getResource("../imagenes/0-0.jpg")));
+        for(int i=0;i<28;i++){
+        JButton btnFicha0 = new JButton(new ImageIcon(this.getClass().getResource(control.getImagen(i))));
         panelCartas.add(btnFicha0);
+        }
 
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.weightx = 0.75;
         gbc.insets = margen;
+        panelCartas.setPreferredSize(new Dimension(800, 200));
         panelJugar.add(panelCartas, gbc);
 
          // PANEL DE JUGADORES
@@ -120,7 +131,7 @@ public class VentanaPrincipal extends JFrame{
         botonComer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                panelJugador1.add(new JButton(new ImageIcon(this.getClass().getResource("../imagenes/0-0.jpg"))));
+                panelJugador1.add(new JButton(new ImageIcon(this.getClass().getResource(control.getImagen(5)))));
                 panelJugador1.revalidate();
                 validate();
             }
@@ -130,7 +141,7 @@ public class VentanaPrincipal extends JFrame{
         botonComer2.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            panelJugador2.add(new JButton(new ImageIcon(this.getClass().getResource("../imagenes/0-0.jpg"))));
+            panelJugador2.add(new JButton(new ImageIcon(this.getClass().getResource(control.getImagen(5)))));
             panelJugador2.revalidate();
             validate();
             }
@@ -160,6 +171,7 @@ public class VentanaPrincipal extends JFrame{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ventanaJugar();
+                control.cargarFichas();
             }
 
         });

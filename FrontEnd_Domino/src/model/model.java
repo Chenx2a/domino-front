@@ -12,40 +12,31 @@ import java.util.ArrayList;
  */
 public class model {
     private ArrayList<Ficha> pozo;
-    private Jugador jugador1;
-    private Jugador jugador2;
+    private ArrayList<Jugador> jugadores;
+    
     
     public model(){
     }
     
     public void iniciar(){
         this.pozo = new ArrayList();
-        this.jugador1 = new Jugador();
-        this.jugador2 = new Jugador();
+        this.jugadores = new ArrayList();
     }
     
     public ArrayList getPozo(){
         return this.pozo;
     }
     
-    public ArrayList getListaJ1(){
-        return this.jugador1.getLista();
-    }
-    
-    public ArrayList getListaJ2(){
-        return this.jugador2.getLista();
+    public ArrayList getJugadores(){
+        return this.jugadores;
     }
     
     public void setPozo(ArrayList pozo){
         this.pozo = pozo;
     }
     
-    public void setListaJ1(ArrayList lista){
-        this.jugador1.setLista(lista);
-    }
-    
-    public void setListaJ2(ArrayList lista){
-        this.jugador2.setLista(lista);
+    public void setJugadores(ArrayList lista){
+        this.jugadores = lista;
     }
     
 }

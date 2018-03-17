@@ -5,6 +5,7 @@
  */
 package control;
 import LogicaNegocio.FlujoPrincipal;
+import LogicaNegocio.Jugador;
 import java.util.Collection;
 import model.model;
 /**
@@ -31,5 +32,11 @@ public class control {
     public Collection listarFichas () throws Exception {
         return fp.listarFichas();
     }
+    
+    public void insertarJugador (Jugador elJugador) throws Exception {
+        fp.insertarJugador(elJugador);
+    }
+    
+    
 
 }
